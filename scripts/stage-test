@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+mkdir -p my-cache
+
+echo "Stage Test: $1"
+echo "test-$1" > ./my-cache/test-output
+echo "test-$1" > "./my-cache/test-output-$1"
+
+ls ./my-cache
+cat ./my-cache/env

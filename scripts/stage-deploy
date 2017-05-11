@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+mkdir -p my-cache
+
+echo "Stage Deploy"
+
+ls ./my-cache
+cat ./my-cache/env

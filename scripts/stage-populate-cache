@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+
+mkdir -p my-cache
+
+echo "Stage Populate Cache"
+
+ls my-cache
+rm -r my-cache/*
+export random_cached=$RANDOM
+export > ./my-cache/env
+
+ls ./my-cache
+cat ./my-cache/env

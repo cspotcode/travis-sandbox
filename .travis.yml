@@ -1,0 +1,33 @@
+sudo: false
+language: c
+cache:
+  directories: my-cache
+env:
+  - what=12
+# Skip installation step
+# install: skip
+# script: skip
+jobs:
+  include:
+    - stage: populate cache
+      install: echo "install populate cache"
+      script: ./scripts/stage-populate-cache
+    - stage: test2
+      env:
+        - ENV_FOO=1
+      install: echo "install test 1"
+      script: ./scripts/stage-test 1
+    - stage: test2
+      env:
+        - ENV_FOO=2
+      install: echo "install test 2"
+      script: ./scripts/stage-test 2
+    - stage: test2
+      env:
+        - ENV_FOO=1
+        - ENV_FOO=2
+      install: echo "install test 1and2"
+      script: ./scripts/stage-test 1and2
+    - stage: deploy
+      install: echo "install deploy"
+      script: ./scripts/stage-deploy
