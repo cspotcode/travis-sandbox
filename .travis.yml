@@ -1,11 +1,30 @@
 sudo: false
 language: c
-env:
-  - FOO=1
-  - FOO=2
+cache:
+  directories:
+    - ./cache
 jobs:
   include:
-  - stage: test
-  - stage: deploy
-  - stage: last
+  - stage: first
     env:
+      - FOO=1
+      - CACHE_NAME=shared
+    script: mkdir -p ./cache && echo $RANDOM > ./cache/random
+  - stage: first
+    env:
+      - FOO=2
+    script: mkdir -p ./cache && echo $RANDOM > ./cache/random
+  - stage: second
+    env:
+      - FOO=1
+      - CACHE_NAME=shared
+    script: cat ./cache/random
+  - stage: second
+    env:
+      - FOO=2
+      - CACHE_NAME=shared
+    script: cat ./cache/random
+  - stage: second
+    env:
+      - FOO=2
+    script: cat ./cache/random
