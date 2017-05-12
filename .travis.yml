@@ -6,3 +6,4 @@ env:
 jobs:
   include:
   - stage: test
+  - stage: deploy
